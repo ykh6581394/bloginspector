@@ -14,7 +14,7 @@ from docx import Document
 import time
 import docx2txt
 import shutil
-import aspose.words as aw
+#import aspose.words as aw
 #from sentence_transformers import SentenceTransformer, util
 
 def KeyInspector(paras, keyword, sep):
