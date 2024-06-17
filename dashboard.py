@@ -15,7 +15,7 @@ import time
 import docx2txt
 import shutil
 import aspose.words as aw
-from sentence_transformers import SentenceTransformer, util
+#from sentence_transformers import SentenceTransformer, util
 
 def KeyInspector(paras, keyword, sep):
     ek = keyword
@@ -243,7 +243,7 @@ with tab2:
         buf = io.BytesIO()
         with zipfile.ZipFile(buf,"x") as csv_zip:
             
-            embedder = SentenceTransformer("jhgan/ko-sroberta-multitask")
+            #embedder = SentenceTransformer("jhgan/ko-sroberta-multitask")
             
             org_name       = []
             title_name     = []
@@ -333,13 +333,13 @@ with tab2:
             
                 csv_zip.writestr(title+"_"+file_name.split(".")[0]+".csv",result_dt.to_csv(index=False).encode('utf-8-sig'))
             
-            embedder = SentenceTransformer("jhgan/ko-sroberta-multitask")
-            corpus_embeddings = embedder.encode(title_name, convert_to_tensor=True)
+            #embedder = SentenceTransformer("jhgan/ko-sroberta-multitask")
+            #corpus_embeddings = embedder.encode(title_name, convert_to_tensor=True)
             
             
-            cos_scores = util.pytorch_cos_sim(corpus_embeddings, corpus_embeddings)
-            cos_scores = cos_scores.cpu()
-            title_sim = pd.DataFrame(cos_scores, columns = org_name, index = org_name)
+            #cos_scores = util.pytorch_cos_sim(corpus_embeddings, corpus_embeddings)
+            #cos_scores = cos_scores.cpu()
+            #title_sim = pd.DataFrame(cos_scores, columns = org_name, index = org_name)
 
 
             summary_dt = pd.DataFrame({"filename" : org_name,
@@ -365,7 +365,7 @@ with tab2:
                                        })
                 
             csv_zip.writestr("summary.csv",summary_dt.to_csv(index=False).encode('utf-8-sig'))
-            csv_zip.writestr("title_similarity.csv",title_sim.to_csv().encode('utf-8-sig'))
+            #csv_zip.writestr("title_similarity.csv",title_sim.to_csv().encode('utf-8-sig'))
                 
             st.download_button(
                     label = "[Download] Download keyword zip",
