@@ -410,11 +410,13 @@ with tab3:
         key = list(pd.read_csv(keyword_files)["keyword"])
         
         influencer = []
+        reply_length = []
         counter    = []
     
         for xx in range(len(xl_sheet)):
             reply_all = pd.read_excel(reply_files, sheet_name = xl_sheet[xx])
             reply_list = list(reply_all["Reply"])
+            reply_length.append(len(reply_list))
             influencer.append(xl_sheet[xx])
             rep_each_counter = []
             for rep in reply_list:
@@ -425,7 +427,9 @@ with tab3:
                 rep_each_counter.append(unit)
             counter.append(sum(rep_each_counter))
         
-        reply_dt = pd.DataFrame({"influencer" : influencer, "reply counter" : counter})
+        reply_dt = pd.DataFrame({"influencer" : influencer, 
+                                 "reply all" : reply_length,
+                                 "reply counter" : counter})
     
         csv = convert_df(reply_dt)
         st.download_button(
