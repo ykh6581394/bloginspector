@@ -415,7 +415,7 @@ with tab3:
     
         for xx in range(len(xl_sheet)):
             reply_all = pd.read_excel(reply_files, sheet_name = xl_sheet[xx])
-            reply_list = list(reply_all["Reply"])
+            reply_list = list(reply_all["comment"])
             reply_length.append(len(reply_list))
             influencer.append(xl_sheet[xx])
             rep_each_counter = []
